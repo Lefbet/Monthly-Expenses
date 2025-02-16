@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Expense
+{% endblock %}
+
+{% block main %}
+    <form action="/add" method="post" onsubmit="return validate_add()">
+        <select class="form-select" id="category" name="category" style="width: 212px; margin: auto; text-align: left;">
+            <option disabled selected>Category</option>
+            {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <p></p>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="amount" name="amount" placeholder="Amount" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="description" name="description" placeholder="Description (optional)" type="text" size="40">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="date" name="date" value="{{ today }}" type="date" max="{{ today }}">
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+    <br>
+    <p class='error' id='error_msg'></p>
+{% endblock %}

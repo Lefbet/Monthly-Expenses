@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Overview
+{% endblock %}
+
+{% block main %}
+    <form action="/" method="post" onsubmit="return validate_index()">
+        <div class="flex">
+            <div>
+                <select class="form-select" id="year" name="year" style="width: 182px; text-align: left;">
+                    <option disabled selected>Select Year</option>
+                    {% for row in years %}
+                    <option value="{{ row.year }}">{{ row.year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <select class="form-select" id="month" name="month" style="width: 212px; text-align: left;">
+                    <option disabled selected>Select Month</option>
+                    {% for month in months %}
+                    <option value="{{ month }}">{{ month }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit">Go</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <p class='error' id='error_msg'></p>
+    {% if month == "Whole Year" %}
+    <h1 style="color: blue;">Annual Expenses</h1>
+    <h1>{{ year }}</h1>
+    {% else %}
+    <h1>{{ month }} {{ year }}</h1>
+    {% endif %}
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in expenses %}
+            <tr>
+                <th>{{ row.category }}</th>
+                <td>{{ row.total | usd }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>Grand Total:</th>
+                {% if grand_total == None %}
+                    <th>{{ grand_total }}</th>
+                {% else %}
+                    <th>{{ grand_total | usd }}</th>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

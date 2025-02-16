@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Categories
+{% endblock %}
+
+{% block main %}
+    <form action="/categories" method="post" onsubmit="return validate_categories()">
+        <label for="category">Existing categories:</label>
+        <select class="form-select" id="category" name="category" style="width: 212px; margin: auto; text-align: left;">
+            {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <p></p>
+        <div class="mb-3">
+            <label for="newcategory">Add a new category:</label>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="newcategory" name="newcategory" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+    <br>
+    <p class='error' id='error_msg'></p>
+{% endblock %}
