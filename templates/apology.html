@@ -6,5 +6,6 @@
 
 {% block main %}
     <!-- https://memegen.link/ -->
-    <img alt="{{ top }}" class="border img-fluid" src="http://memegen.link/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?alt=https://as1.ftcdn.net/v2/jpg/04/93/94/26/1000_F_493942689_BuswVSTRRA85le8VicjTgFdEhsZSRNv3.jpg&width=400" title="{{ top }}">
+	<!-- https://as1.ftcdn.net/v2/jpg/04/93/94/26/1000_F_493942689_BuswVSTRRA85le8VicjTgFdEhsZSRNv3.jpg -->
+    <img alt="{{ top }}" class="border img-fluid" src="https://api.memegen.link/images/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?background=https%3A%2F%2Fas1.ftcdn.net%2Fv2%2Fjpg%2F04%2F93%2F94%2F26%2F1000_F_493942689_BuswVSTRRA85le8VicjTgFdEhsZSRNv3.jpg&width=600" title="{{ top }}">
 {% endblock %}
